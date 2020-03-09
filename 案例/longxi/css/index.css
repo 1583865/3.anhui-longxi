@@ -1,0 +1,424 @@
+/*所有的样式都设置在index文件中 省略了base  common*/
+body {
+	/*文字属性*/
+	font-size: 14px;
+	font-family: "Arial","Microsoft Yahei","SimSun";
+	color: #333;
+}
+img {
+	/*display: block去掉插入图片  3px空白*/
+	display: block;
+	/*对于标准流   宽度使用%表示相对于父盒子内容宽比值*/
+	width: 100%;
+}
+a {
+	/*设置下划线*/
+	text-decoration: underline;
+	/*去掉下滑线   none没有*/
+	text-decoration: none;
+	/*文字是否倾斜font-style     倾斜italic  正常normal*/
+
+
+	/*对于a标签特殊  文字属性color,text-decoration不能从祖先继承  其他文字属性可以从祖先继承的*/
+	color: #333;
+}
+/*原子类*/
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+/*对于pc端  通常设置版心*/
+.inner {
+	width: 1000px;
+	/*块级元素居中  mg*/
+	margin: 0 auto;
+	position: relative;
+	/*相对定位： 不脱标  相对于原位置进行偏移*/
+}
+.inner .header {
+	/*header需要压盖banner  必须设置绝对定位
+	绝对定位使用：1同级元素实现压盖
+				  2调整元素位置
+	*/
+	position: absolute;
+	/*绝对定位常用：参考距离最近且有定位的祖先元素    参考顶点：边框以内四个点
+	  脱离标准文档流（固定定位也脱标）
+	*/
+	left: 0px;
+	top: 19px;
+	width: 992px;
+	height: 103px;
+}
+.inner .header .logo {
+	/*浮动：同级元素并排显示并且设置宽高*/
+	float: left;
+	width: 151px;
+	height: 103px;
+}
+.inner .header .logo a {
+	/*a是行内元素  不能设置宽高*/
+	display: block;
+	width: 100%;
+	height: 100%;
+	/*用户可以看到背景图*/
+	background-image: url(../images/logo.png);	
+	/*文字用户不能看到*/
+
+	/*text-indent: 文字首行缩进
+	text-align: 文本左右居中
+	*/
+	text-indent: -333em;
+	overflow: hidden;
+}
+.inner .header .nav {
+	/*同级元素要浮动都进行浮动 logo nav*/
+	float: left;
+	/*浮动：性质
+	脱标：不区分块和行内都可以设置宽高
+	如果不设置宽高 内容撑开
+	*/
+	width: 841px;
+	height: 91px;
+}
+.inner .header .nav ul li {
+	/*浮动属性是盒子属性，不能从祖先继承*/
+	float: left;
+	width: 120px;
+	height: 91px;
+	border-right: 1px solid #EAEAEA;
+	/*li设置白色背景  为了鼠标hover时出现底部白色下边*/
+	background-color: #fff;
+}
+.inner .header .nav ul li:nth-child(2) {
+	width: 114px;
+}
+.inner .header .nav ul li a {
+	display: block;
+	/*元素只要设置block  就是块级元素性质
+		对于多行不同的文字  用padding挤出文字位置
+		单行文字一般位置调整采用lh
+	*/
+	padding-top: 28px;
+	font-size: 16px;
+	line-height: 28px;
+	height: 63px;
+	text-align: center;
+}
+.inner .header .nav ul li a:hover {
+	/*:hover  和  a联系
+	a标签所有的样式都会加载在a:hover行为上
+	有特殊改变的效果使用层叠
+	*/
+	background-color: #DCDEED;
+	border-top: 4px solid orange;
+	/*占有高度：28+63+4 = 95px*/
+	/*位置调整 ： 相对定位，绝对定位*/
+	position: relative;
+	top: -4px;
+	/*需要hover出现4px白色height: 63-4*/
+	height: 59px;
+}
+.inner .header .nav ul li a span {
+	display: block;
+	color: #C1CAD3;
+	font-size: 12px;
+	line-height: 20px;
+}
+
+
+/*banner*/
+.banner {
+	/*表示body内容宽度100%*/
+	width: 100%;
+	height: 665px;
+	background-color: lightblue;
+}
+.banner .pic {
+	/*博雅互动 实现通栏大banner*/
+	width: 100%;
+	height: 100%;
+	/*背景图默认从盒子的左上角开始渲染   默认背景图显示原尺寸1920*665
+	background-position:调整背景图在盒子中的渲染位置
+
+	*/
+	background: url(../images/banner2.jpg) no-repeat center top;
+}
+.banner .inner .circles {
+	/*压盖效果一定是绝对定位*/
+	position: absolute;
+	left: 0px;
+	top: -447px;
+	width: 15px;
+	height: 270px;
+	background: green url(../images/indexbg.png) repeat-y center top;
+}
+.banner .inner .circles ol li {
+	/*渲染小圆点背景图*/
+	width: 15px;
+	height: 15px;
+	background: url(../images/circle.png);
+	/*同级元素之间有距离mg*/
+	margin-bottom: 70px;
+	position: relative;
+}
+.banner .inner .circles ol li a {
+	/*设置大圆点背景图*/
+	/*绝对定位：位置调整  脱标可以设置宽高*/
+	position: absolute;
+	width: 103px;
+	height: 41px;
+	background: url(../images/icon.png) no-repeat 0px -1px;
+	right: -13px;
+	top: -12px;
+	/*所有a消失*/
+	display: none;
+}
+.banner .inner .circles ol li.no2 a {
+	/*单一属性层叠*/
+	background-position: 0px -44px;
+} 
+.banner .inner .circles ol li.no3 a {
+	/*单一属性层叠*/
+	background-position: 0px -87px;
+} 
+.banner .inner .circles ol li.no4 a {
+	/*单一属性层叠*/
+	background-position: 0px -130px;
+} 
+.banner .inner .circles ol li.cur a {
+	/*cur轮换类名  li有cur  设置后代a出现*/
+	display: block;
+}
+.banner .inner .video {
+	position: absolute;
+	right: 29px;
+	top: -167px;
+	width: 151px;
+	height: 89px;
+}
+/*内容区域*/
+.content {
+	/*通栏的大背景图*/
+	width: 100%;
+	height: 836px;
+	/*通常设置大背景图水平居中*/
+	background: url(../images/mainbg.png) no-repeat center top;
+
+}
+.content .inner .hd {
+	/*压盖效果一定是绝对定位*/
+	position: absolute;
+	top: -54px;
+	left: 0px;
+	width: 960px;
+	padding: 18px 20px 0px 20px;
+	height: 36px;
+	/*能够渲染背景的区域： width,height + padding*/
+	background-color: #fff;
+}
+.content .inner .hd h3 {
+	float: left;
+	width: 94px;
+	height: 22px;
+	line-height: 22px;
+	font-size: 16px;
+	color: #403C31;
+}
+.content .inner .hd ul {
+	float: left;
+	width: 587px;
+	height: 16px;
+	/*多行新闻滚动出现的效果*/
+	overflow: hidden;
+	font-size: 12px;
+	line-height: 16px;
+}
+.content .inner .hd ul li a {
+	color: #776C7D;
+}
+.content .inner .hd ul li span {
+	color: #B2B7BA;
+	margin-left: 14px;
+}
+.content .inner .hd .btns {
+	float: left;
+	width: 46px;
+	height: 17px;
+}
+.content .inner .hd .btns a {
+	float: left;
+	width: 23px;
+	height: 17px;
+	background: url(../images/btn_bg.png) no-repeat -1px 0px;
+}
+.content .inner .hd .btns a.right {
+	background-position: -23px 0px;
+}
+.content .inner .hd .more {
+	float: right;
+	width: 67px;
+	height: 27px;
+	background-color: #DBDBDB;
+	color: #fff;
+	font-size: 12px;
+	text-align: center;
+	line-height: 27px;
+}
+.content .inner .lists {
+	/*对于块级元素  1设置宽高  2独占一行   3 不设置宽度，自己的占有宽度(padding,border,mg)自动盛满父盒子的内容*/
+	height: 366px;
+	border-top: 1px solid #E1E1E1;
+	border-bottom: 1px solid #E1E1E1;
+	background-color: #F3F3F3;
+	padding: 0px 20px;
+}
+.content .inner .lists .list {
+	float: left;
+	width: 304px;
+	margin-right: 24px;
+}
+.content .inner .lists .list:last-child {
+	/*对于浮动元素  父盒子宽度不够  会掉下来*/
+	margin-right: 0px;
+}
+.content .inner .lists .list .title {
+	height: 53px;
+	line-height: 53px;
+	font-size: 16px;
+	color: #39423D;
+}
+.content .inner .lists .list .title h4 {
+	float: left;
+}
+.content .inner .lists .list .title a {
+	float: right;
+	font-size: 12px;
+	color: #A59F9F;
+	text-decoration: underline;
+}
+.content .inner .lists .list .bd {
+	/*拼接图片  大盒子设置背景图  渲染白色边框*/
+	width: 279px;
+	height: 179px;
+	background: url(../images/bubble.png) no-repeat;
+	/*img设置width: 100%   img和盒子边框之间有距离一定是padding实现*/
+	padding: 14px 10px 0px 10px;
+}
+.content .inner .lists .list .bd img {
+	/*对于img  宽设置 高度会等比例缩放*/
+	/*为了网页加载更快速  工作中同时设置宽  和高度*/
+	height: 162px;
+}
+.content .inner .lists .list p {
+	margin-top: 8px;
+	font-size: 12px;
+	line-height: 24px;
+	color: #8D8B8C;
+}
+.content .inner .hot {
+	padding: 18px 20px 0px;
+	height: 172px;
+	/*背景图片和背景颜色可以同时渲染  图片是在颜色之上*/
+	background: #F3F3F3 url(../images/con_b_bg.png) no-repeat left bottom ;
+}
+.content .inner .hot .title {
+	height: 25px;
+	font-size: 16px;
+	line-height: 25px;
+	color: #3B3233;
+}
+.content .inner .hot .title h3 {
+	float: left;
+}
+.content .inner .hot .title .btns {
+	float: right;
+}
+.content .inner .hot .title .btns a {
+	float: left;
+	width: 27px;
+	height: 25px;
+	background: url(../images/btn_bg.png) no-repeat -1px -39px;
+}
+.content .inner .hot .title .btns a.right {
+	width: 28px;
+	background-position: -28px -39px;
+}
+/*友情链接*/
+.content .inner .flink {
+	overflow: hidden;
+}
+.content .inner .flink h3 {
+	height: 40px;
+	line-height: 40px;
+	font-size: 16px;
+	color: #616A67;
+}
+.content .inner .flink h6 {
+	font-size: 12px;
+	padding-left: 7px;
+}
+.content .inner .flink h6 a {
+	color: #626262;
+}
+.content .inner .flink ul {
+	margin-top: 26px;
+	overflow: hidden;
+}
+.content .inner .flink ul li {
+	float: left;
+	/*自动内容撑开*/
+	font-size: 14px;
+	line-height: 38px;
+	color: #616A6F;
+	/*li之间距离padding mg*/
+	margin: 0px 30px;
+}
+.content .inner .flink ul li.teshu {
+	margin-left: 15px;
+}
+.content .inner .flink ul li p {
+	font-size: 12px;
+	line-height: 24px;
+	color: #A2A2A4;
+}
+.content .inner .flink ul li.pic {
+	width: 102px;
+	margin-left: 20px;
+	padding-top: 10px;
+}
+.content .inner .flink ul li.pic img {
+	height: 108px;
+}
+.content .inner .flink ul li.pic p {
+	height: 30px;
+	font-size: 12px;
+	line-height: 30px;
+	text-align: center;
+}
+.content .inner .flink ul li.pic a {
+	display: block;
+	width: 62px;
+	height: 22px;
+	background-image: url(../images/weibo.png);
+	/*书写文字 用户不能看到  但是需要看到背景图*/
+	/*需要设置a标签在父盒子宽度内水平居中*/
+	margin: 0 auto;
+	text-indent: -222em;
+	overflow: hidden;
+}
+/*底部*/
+.footer {
+	width: 100%;
+	height: 55px;
+	background-color: #2B2B2B;
+	/*文字属性*/
+	font-size: 12px;
+	line-height: 55px;
+	color: #B0BABC;
+}
+.footer p a {
+	color: #8B8B81;
+}
+
